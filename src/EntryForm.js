@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class EntryForm extends Component {
     state = { entry: "", errorMessage: ""}
@@ -25,6 +26,7 @@ class EntryForm extends Component {
                     {errorMessage}
                 </div>
                     <input type="submit" value="create new entry" />
+                    <Link to="/entries"><button>View all entries</button></Link>
             </form>
         );
     }

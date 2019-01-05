@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import HomeView from "./HomeView";
 import CategorySelectionView from "./CategorySelectionView";
 import NewEntryView from "./NewEntryView";
+import AllEntriesView from "./AllEntriesView";
 
 class App extends Component {
     state={
@@ -21,12 +22,13 @@ class App extends Component {
     }
 
     render() {
-        const { categories } = this.state;
+        const { categories, entries } = this.state;
 
         return (
             <div>
                 <BrowserRouter>
                     <div>
+                        <Route exact path="/entries" render={(props) => { return <AllEntriesView {...props} entries={entries} /> }} />
                         <Route exact path="/" component={HomeView} />
                         <Route exact path="/category" render={(props) => { return <CategorySelectionView {...props} categories={categories} /> }} />
                         <Route exact path="/entry/new/:id" render={(props) => { return <NewEntryView {...props} categories={categories} onEntryFormSubmit={this.onEntryFormSubmit}/> }} />
