@@ -17,6 +17,7 @@ class NewEntryView extends Component {
 
     render() {
         const { errorMessage, category } = this.state;
+        const { onEntryFormSubmit } = this.props;
 
         return (
             <div>
@@ -25,7 +26,7 @@ class NewEntryView extends Component {
                     <div>
                         <Link to="/category"><button>Back To Categories</button></Link>
                         <h1>New { category} entry</h1>
-                        <EntryForm />
+                        <EntryForm category={category} onEntryFormSubmit={onEntryFormSubmit} />
                     </div>
                 }
             </div>
