@@ -9,6 +9,7 @@ class AllEntriesView extends Component {
     }
     render() {
         const { entries } = this.props;
+        const { onEntryDeleteClick } = this.props;
 
     return (
         <div>
@@ -17,7 +18,9 @@ class AllEntriesView extends Component {
                             return (
                                 <li key={item.entry}> 
                                     {item.entry}
+                                    <button onClick={() => onEntryDeleteClick(item, index)}>Delete</button>
                                 </li>
+                                
                             );
                 })}
             </ul>

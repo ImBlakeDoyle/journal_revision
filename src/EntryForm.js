@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class EntryForm extends Component {
-    state = { entry: "", errorMessage: ""}
+    state = { entry: "", errorMessage: "", redirect: false}
 
     onTextAreaChange = (event) => {
         this.setState({ entry: event.target.value });
@@ -14,10 +14,15 @@ class EntryForm extends Component {
         const { onEntryFormSubmit, category } = this.props;
         onEntryFormSubmit({ category, entry});
         this.setState({ entry: "" });
+        this.setState({ redirect: true})
     }
 
     render() {
-        const { entry, errorMessage } = this.state;
+        const { entry, errorMessage, redirect } = this.state;
+
+        if (redirect) {
+            return <Redirect to="/entries" />;
+        }
 
         return (
             <form onSubmit={this.onFormSubmit}>

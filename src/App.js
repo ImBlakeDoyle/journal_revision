@@ -21,6 +21,12 @@ class App extends Component {
         });
     }
 
+    onEntryDeleteClick = (item, index) => {
+        const removeEntry = this.state.entries.splice();
+        removeEntry.slice(item, index);
+        this.setState({ entries: removeEntry});
+    }
+
     render() {
         const { categories, entries } = this.state;
 
@@ -28,7 +34,7 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <Route exact path="/entries" render={(props) => { return <AllEntriesView {...props} entries={entries} /> }} />
+                        <Route exact path="/entries" render={(props) => { return <AllEntriesView {...props} entries={entries} onEntryDeleteClick={this.onEntryDeleteClick}/> }} />
                         <Route exact path="/" component={HomeView} />
                         <Route exact path="/category" render={(props) => { return <CategorySelectionView {...props} categories={categories} /> }} />
                         <Route exact path="/entry/new/:id" render={(props) => { return <NewEntryView {...props} categories={categories} onEntryFormSubmit={this.onEntryFormSubmit}/> }} />
